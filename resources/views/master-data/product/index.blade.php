@@ -80,6 +80,13 @@
                                     <a href="{{ route('products.edit, $product') }}" class="text-indigo-600">
                                         Ubah
                                     </a>
+                                    <form action="{{ route('products.destroy', $product) }}" method="POST"
+                                        onsubmit="return confirm('Yakin ingin menghapus produk {{ $product->name }}?')"
+                                        class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-red-600">Hapus</button>
+                                    </form>
                                 </td>
                             </tr>
                         @empty
