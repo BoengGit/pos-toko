@@ -12,7 +12,7 @@ class UpdateCategoryRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return auth()->user()->role === 'admin';
     }
 
     /**
@@ -23,7 +23,7 @@ class UpdateCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:100|unique:categories,name,' . $this->category->id,
+            'name' => 'required|string|max:100|unique:categories,name,'.$this->category->id,
             'description' => 'nullable|string|max:255',
         ];
     }

@@ -12,7 +12,7 @@ class UpdateProductRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return auth()->user()->role === 'admin';
     }
 
     /**
@@ -24,7 +24,7 @@ class UpdateProductRequest extends FormRequest
     {
         return [
             'category_id' => 'required|exists:categories,id',
-            'code' => 'required|string|max:20|unique:products,code,' . $this->product->id,
+            'code' => 'required|string|max:20|unique:products,code,'.$this->product->id,
             'name' => 'required|string|max:150',
             'unit' => 'required|string|max:20',
             'price' => 'required|integer|min:0',

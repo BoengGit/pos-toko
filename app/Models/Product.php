@@ -8,10 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
+    use SoftDeletes;
 
     protected $fillable = ['category_id', 'code', 'name', 'unit', 'price', 'stock'];
-
-    use SoftDeletes;
 
     public function category()
     {
@@ -26,7 +25,7 @@ class Product extends Model
     protected function priceRupiah(): Attribute
     {
         return Attribute::make(
-            get: fn() => 'Rp' . number_format($this->price, 0, ',', '.')
+            get: fn () => 'Rp'.number_format($this->price, 0, ',', '.')
         );
     }
 }

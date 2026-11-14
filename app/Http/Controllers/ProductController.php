@@ -6,7 +6,6 @@ use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Category;
 use App\Models\Product;
-use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -26,6 +25,7 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::orderBy('name')->get();
+
         return view('master-data.product.create', compact('categories'));
     }
 
@@ -53,6 +53,7 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $categories = Category::orderBy('name')->get();
+
         return view('master-data.product.edit', compact('product', 'categories'));
     }
 

@@ -4,7 +4,7 @@
             <h2 class="font-semibold text-xl text-gray-800">
                 Data Kategori
             </h2>
-            <a href="{{ route('products.create') }}" class="bg-indigo-600 text-white px-4 py-2 rounded-md text-sm">
+            <a href="{{ route('categories.create') }}" class="bg-indigo-600 text-white px-4 py-2 rounded-md text-sm">
                 + Tambah Kategori
             </a>
         </div>

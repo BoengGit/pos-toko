@@ -15,7 +15,6 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next, string ...$roles): Response
     {
-
         if (! $request->user() || ! in_array($request->user()->role, $roles)) {
             return response()->view('errors.kustom403', [], 403);
         }

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
-use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -15,6 +14,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::withCount('products')->latest()->paginate(10);
+
         return view('master-data.category.index', compact('categories'));
     }
 
@@ -31,12 +31,7 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        $validate = $request->validate([
-            'name' => 'required|string|max:100|unique:categories,name',
-            'description' => 'nullable|string|max:255',
-        ]);
-
-        Category::created($validate);
+        Category::create($request->validated());
 
         return redirect()->route('categories.index')->with('success', 'Kategori berhasil ditambahkan.');
     }
