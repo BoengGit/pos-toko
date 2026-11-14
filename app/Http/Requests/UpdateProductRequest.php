@@ -27,7 +27,7 @@ class UpdateProductRequest extends FormRequest
             'code' => 'required|string|max:20|unique:products,code,'.$this->product->id,
             'name' => 'required|string|max:150',
             'unit' => 'required|string|max:20',
-            'price' => 'required|integer|min:0',
+            'price' => 'required|integer|min:1',
             'stock' => 'required|integer|min:0',
         ];
     }
