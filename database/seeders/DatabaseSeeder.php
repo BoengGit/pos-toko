@@ -16,19 +16,23 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
-            'name' => 'Admin Toko',
-            'email' => 'admin@barokahmart.test',
-            'password' => Hash::make('password'),
-            'role' => 'admin',
-        ]);
+        User::firstOrCreate(
+            ['email' => 'admin@barokahmart.test'],
+            [
+                'name' => 'Admin Toko',
+                'password' => Hash::make('password'),
+                'role' => 'admin',
+            ]
+        );
 
-        User::create([
-            'name' => 'Kasir Rina',
-            'email' => 'kasir@barokahmart.test',
-            'password' => Hash::make('password'),
-            'role' => 'kasir',
-        ]);
+        User::firstOrCreate(
+            ['email' => 'kasir@barokahmart.test'],
+            [
+                'name' => 'Kasir Rina',
+                'password' => Hash::make('password'),
+                'role' => 'kasir',
+            ]
+        );
 
         $this->call(CategorySeeder::class);
     }

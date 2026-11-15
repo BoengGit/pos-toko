@@ -5,8 +5,12 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PosController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PurchaseOrderController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
+
+Route::redirect('/', '/dashboard');
 
 Route::get('/login', [LoginController::class, 'create'])
     ->middleware('guest')
@@ -31,9 +35,12 @@ Route::get('/about', function () {
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('categories', CategoryController::class);
     Route::resource('products', ProductController::class);
+    Route::resource('suppliers', SupplierController::class);
+    Route::resource('purchase-orders', PurchaseOrderController::class);
+    Route::post('/purchase-orders/{purchaseOrder}/receive', [PurchaseOrderController::class, 'receive'])
+        ->name('purchase-orders.receive');
     Route::get('/reports/sales', [ReportController::class, 'sales'])->name('report.sales');
     Route::get('/reports/sales/export', [ReportController::class, 'export'])->name('report.export');
-    Route::resource('users', UserController::class);
 });
 
 Route::middleware(['auth', 'role:admin,kasir'])->group(function () {

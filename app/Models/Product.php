@@ -22,6 +22,11 @@ class Product extends Model
         return $this->hasMany(TransactionDetail::class);
     }
 
+    public function purchaseOrderDetails()
+    {
+        return $this->hasMany(PurchaseOrderDetail::class);
+    }
+
     protected function priceRupiah(): Attribute
     {
         return Attribute::make(
