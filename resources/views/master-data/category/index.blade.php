@@ -41,6 +41,9 @@
                                 <td class="px-4 py-2 text-sm text-gray-500">{{ $category->description ?? '-' }}</td>
                                 <td class="px-4 py-2 text-center text-sm">{{ $category->products_count }} item</td>
                                 <td class="px-4 py-2 text-sm text-center space-x-2">
+                                    <a href="{{ route('categories.show', $category) }}" class="text-gray-600">
+                                        Detail
+                                    </a>
                                     <a href="{{ route('categories.edit', $category) }}" class="text-indigo-600">
                                         Ubah
                                     </a>
